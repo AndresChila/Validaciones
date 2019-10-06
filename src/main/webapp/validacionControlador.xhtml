@@ -11,46 +11,39 @@
             <h1>Validaciones por parte del controlador</h1>
         <br></br>
             <h:outputText value="Campo validacion no vacio:"/>
-            <h:inputText id="vacio" required="true" label="Vacio "/>
-            <br></br>
-            <h:message for="vacio" style = "color:orange;margin:19px;" ></h:message>
+            <h:inputText id="vacio" value="#{validacionControlador.campoVacio}"/>
             <br></br>
             <h:outputText value="Campo validacion tamaño: "/>
             <h:inputText id="tamaño" required="true" label="Tamaño ">
-                <f:validateLength minimum="5" maximum="10" />
             </h:inputText> 
             <br></br>
             <h:message for="tamaño" style = "color:crimson;margin:19px;"></h:message>
             <br></br>
             <h:outputText value="Campo validacion email: "/>
             <h:inputText id="email" required="true" label="Email " >
-                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
             </h:inputText>   
             <br></br>
             <h:message for="email" style = "color:indigo;margin:19px;"></h:message>
             <br></br>
             <h:outputText value="Campo de validacion valores: "/>
             <h:inputText id="valores" required="true" label="Valores " onkeypress="if((event.which &lt; 48 &amp;&amp; event.which != 44 &amp;&amp; event.which != 46) || event.which &gt; 57) return false;">
-                <f:validateLongRange minimum="-10" maximum="10"></f:validateLongRange>
             </h:inputText> 
             <br></br>
             <h:message for="valores" style = "color:forestgreen;margin:19px;"></h:message>
             <br></br>
             <h:outputText value="Campo de validacion fecha (dia/mes/año): "/>
             <h:inputText  id="fecha" required="true" label="Fecha ">
-                <f:convertDateTime pattern="dd/MM/yyyy" />
             </h:inputText>
             <br></br>
             <h:message for="fecha" style = "color:magenta;margin:19px;"></h:message>
             <br></br>
             <h:outputText  value="Campo de validacion moneda: "/>
             <h:inputText  id="moneda" required="true" label="Moneda ">
-                <f:convertNumber currencySymbol="$" groupingUsed="true" maxFractionDigits="3" type="currency" locale="es_CO" />
             </h:inputText>
             <br></br>
             <h:message for="moneda" style = "color:mediumblue;margin:19px;"></h:message>
             <br></br>
-            <h:commandButton value ="Probar" action="validacion">
+            <h:commandButton value ="Probar" action="#{validacionControlador.validarVacio()}">
             </h:commandButton>
             
 
