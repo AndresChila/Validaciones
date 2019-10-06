@@ -44,12 +44,15 @@
             <br></br>
             <h:outputText  value="Campo de validacion moneda: "/>
             <h:inputText  id="moneda" required="true" label="Moneda ">
+                <f:convertNumber currencySymbol="$" groupingUsed="true" maxFractionDigits="3" type="currency" locale="es_CO" />
             </h:inputText>
             <br></br>
             <h:message for="moneda" style = "color:mediumblue;margin:19px;"></h:message>
             <br></br>
             <h:commandButton value ="Probar" action="validacion">
             </h:commandButton>
+            
+
         </h:form>
     </h:body>
 </html>
