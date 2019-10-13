@@ -5,12 +5,12 @@
  */
 package com.udec.validaciones.controlador;
 
+import com.udec.validaciones.modelo.Logica;
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
-import javax.validation.constraints.NotNull;
-import org.omg.CosNaming.NamingContextPackage.NotEmpty;
+
 
 /**
  *
@@ -25,16 +25,53 @@ public class ValidacionControlador implements Serializable{
     private String mensajeValores;
     private String mensajeFechas;
     private String mensajeMoneda;
-    @NotNull(message = "El campo no puede ir vacio")
+    private String escuchadorBoton;
+    Logica logica = new Logica();
     private String campoVacio;
-    /**
-     * Creates a new instance of ValidacionControlador
-     */
+    
     public ValidacionControlador() {
     }
+    public void validarVacio(){
+        logica.validarVacio(mensajeVacio);
+        setMensajeVacio(logica.getMensaje());
+    }
+    public void validarTama(){
+        logica.validarTama(mensajeTamaño);
+        setMensajeTamaño(logica.getMensaje());
+    }
+    public void validarCorreo(){
+        logica.validarCorreo(mensajeCorreo);
+        setMensajeCorreo(logica.getMensaje());
+    }
+    public void validarValores(){
+        logica.validarValores(mensajeValores);
+        setMensajeValores(logica.getMensaje());
+    }
+    public void validarFechas(){
+        logica.validarFecha(mensajeFechas);
+        setMensajeFechas(logica.getMensaje());
+    }
+    public void validarMoneda(){
+        logica.validarMoneda(mensajeMoneda);
+        setMensajeMoneda(logica.getMensaje());
+    }
 
+    public String getEscuchadorBoton() {
+        validarVacio();
+        validarTama();
+        validarValores();
+        validarCorreo();
+        validarFechas();
+        validarMoneda();
+        return "";
+    }
+
+    public void setEscuchadorBoton(String escuchadorBoton) {
+        this.escuchadorBoton = escuchadorBoton;
+    }
+    
     public String getMensajeVacio() {
-        return "Debe ingresar un dato.";
+        return mensajeVacio;
     }
 
     public void setMensajeVacio(String mensajeVacio) {
@@ -42,7 +79,7 @@ public class ValidacionControlador implements Serializable{
     }
 
     public String getMensajeTamaño() {
-        return "El tamaño del campo debe ser entre 5 y 10 caracteres.";
+        return mensajeTamaño;
     }
 
     public void setMensajeTamaño(String mensajeTamaño) {
@@ -50,7 +87,7 @@ public class ValidacionControlador implements Serializable{
     }
 
     public String getMensajeCorreo() {
-        return "El mensaje no corresponde a la expresion regular.Ejemplo:tmoreno@gamil.com";
+        return mensajeCorreo;
     }
 
     public void setMensajeCorreo(String mensajeCorreo) {
@@ -58,7 +95,7 @@ public class ValidacionControlador implements Serializable{
     }
 
     public String getMensajeValores() {
-        return "Los datos ingresados no son numeros.";
+        return mensajeValores;
     }
 
     public void setMensajeValores(String mensajeValores) {
@@ -66,7 +103,7 @@ public class ValidacionControlador implements Serializable{
     }
 
     public String getMensajeFechas() {
-        return "El dato inresado no corresponde a un fecha. Ejemplo 12/12/2012";
+        return mensajeFechas;
     }
 
     public void setMensajeFechas(String mensajeFechas) {
@@ -74,7 +111,7 @@ public class ValidacionControlador implements Serializable{
     }
 
     public String getMensajeMoneda() {
-        return "No se reconoce como una divisa.Ejemplo: $99,99";
+        return mensajeMoneda;
     }
 
     public void setMensajeMoneda(String mensajeMoneda) {
@@ -88,11 +125,5 @@ public class ValidacionControlador implements Serializable{
     public void setCampoVacio(String campoVacio) {
         this.campoVacio = campoVacio;
     }
-    
-    public void validarVacio(){
-        if(getCampoVacio().length()>0)
-         getMensajeVacio();      
-    }
-    
     
 }

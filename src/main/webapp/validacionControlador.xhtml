@@ -13,6 +13,8 @@
             <h:outputText value="Campo validacion no vacio:"/>
             <h:inputText id="vacio" value="#{validacionControlador.campoVacio}"/>
             <br></br>
+            <h:outputText value="#{validacionControlador.campoVacio}"/>
+            <br></br>
             <h:outputText value="Campo validacion tamaño: "/>
             <h:inputText id="tamaño" required="true" label="Tamaño ">
             </h:inputText> 
@@ -43,7 +45,7 @@
             <br></br>
             <h:message for="moneda" style = "color:mediumblue;margin:19px;"></h:message>
             <br></br>
-            <h:commandButton value ="Probar" action="#{validacionControlador.validarVacio()}">
+            <h:commandButton value ="Probar" action="#{validacionControlador.escuchadorBoton}">
             </h:commandButton>
             
 
