@@ -15,6 +15,16 @@ import java.util.regex.Pattern;
  * @author AndresChila
  */
 public class Logica {
+    /**
+     * Metodo que llama a todos los metodos de validaciones previamente creadas
+     * @param va
+     * @param ta
+     * @param co
+     * @param val
+     * @param fe
+     * @param mo
+     * @return 
+     */
     public String validarTodo(String va, String ta, String co, String val, String fe, String mo){
         if(validarVacio(va, ta, co, val, fe, mo)){
             if(validarTama(ta)){
@@ -48,6 +58,16 @@ public class Logica {
         }
         return "validaciones completas";
     }
+    /**
+     * Metodo que valida que los campos no estén vacios
+     * @param va
+     * @param ta
+     * @param co
+     * @param val
+     * @param fe
+     * @param mo
+     * @return 
+     */
     public boolean validarVacio(String va, String ta, String co, String val,String fe, String mo ){
         try{
         if(va.length()==0 || ta.length() ==0 || co.length() ==0 || val.length() ==0 ||fe.length() ==0 ||mo.length() ==0 ){
@@ -63,7 +83,11 @@ public class Logica {
         //this.setMensajeVacio("");
         return true;
     }
-
+    /**
+     * Metodo que se encarga de la validacion de la longitud
+     * @param palabra
+     * @return 
+     */
     public boolean validarTama(String palabra) {
         if (palabra.length() < 5) {
             //this.setMensajeTama("La longitud del valor debe ser mayor o igual a 5");
@@ -76,7 +100,11 @@ public class Logica {
         //this.setMensajeTama("");
         return true;
     }
-
+    /**
+     * Metodo que valida el correo
+     * @param correo
+     * @return 
+     */
     public boolean validarCorreo(String correo) {
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher mather = pattern.matcher(correo);
@@ -88,7 +116,11 @@ public class Logica {
             return false;
         }
     }
-
+    /**
+     * Metodo que valida los valores (rango)
+     * @param valor
+     * @return 
+     */
     public boolean validarValores(String valor) {
         if (Integer.parseInt(valor) < -10 || Integer.parseInt(valor) > 10) {
             //this.setMensajeValor("El valor ingresado debe ser mayor a -10 y menor a 10");
@@ -97,7 +129,11 @@ public class Logica {
         //this.setMensajeValor("");
         return true;
     }
-
+    /**
+     * Metodo que valida el formato de fecha
+     * @param fecha
+     * @return 
+     */
     public boolean validarFecha(String fecha) {
         try {
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
@@ -109,7 +145,12 @@ public class Logica {
         }
         //this.setMensajeFecha("");
         return true;
-    }
+    } 
+    /**
+     * Metodo que valida el formato de moneda en pesos colombianos
+     * @param moneda
+     * @return 
+     */
     public boolean validarMoneda(String moneda){
         if(moneda.charAt(0)!= '$'){
             //this.setMensajeMoneda("Formato de moneda no valido, debe empezar por el signo pesos ($). Ejemplo: $500");

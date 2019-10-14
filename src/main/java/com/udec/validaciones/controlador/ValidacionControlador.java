@@ -18,6 +18,9 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean(name = "validacionControlador")
 @ViewScoped
 @Dependent
+/**
+ * Clase controlador de la vista "validacionControlador"
+ */
 public class ValidacionControlador implements Serializable{
     private String mensajeVacio="";
     private String mensajeTamaño="";
@@ -27,10 +30,9 @@ public class ValidacionControlador implements Serializable{
     private String mensajeMoneda="";
     private String mensajeError="";
     Logica logica = new Logica();
-    
-    public ValidacionControlador() {
-    }
-    
+    /**
+     * metodo el cual llama a la logica e invoca todos los metodos de validaciones
+     */
     public void escuchadorBoton() {
         setMensajeError(logica.validarTodo(mensajeVacio, mensajeTamaño, mensajeCorreo, mensajeValores, mensajeFechas, mensajeMoneda));
     }
