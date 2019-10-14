@@ -7,67 +7,32 @@ package com.udec.validaciones.controlador;
 
 import com.udec.validaciones.modelo.Logica;
 import java.io.Serializable;
-import javax.annotation.PostConstruct;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
-
-
+import javax.enterprise.context.Dependent;
+import javax.faces.bean.ManagedBean;
+//import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 /**
  *
  * @author tmore
  */
-@Named(value = "validacionControlador")
-@SessionScoped
+@ManagedBean(name = "validacionControlador")
+@ViewScoped
+@Dependent
 public class ValidacionControlador implements Serializable{
-    private String mensajeVacio;
-    private String mensajeTamaño;
-    private String mensajeCorreo;
-    private String mensajeValores;
-    private String mensajeFechas;
-    private String mensajeMoneda;
-    private String escuchadorBoton;
+    private String mensajeVacio="";
+    private String mensajeTamaño="";
+    private String mensajeCorreo="";
+    private String mensajeValores="";
+    private String mensajeFechas="";
+    private String mensajeMoneda="";
+    private String mensajeError="";
     Logica logica = new Logica();
-    private String campoVacio;
     
     public ValidacionControlador() {
     }
-    public void validarVacio(){
-        logica.validarVacio(mensajeVacio);
-        setMensajeVacio(logica.getMensaje());
-    }
-    public void validarTama(){
-        logica.validarTama(mensajeTamaño);
-        setMensajeTamaño(logica.getMensaje());
-    }
-    public void validarCorreo(){
-        logica.validarCorreo(mensajeCorreo);
-        setMensajeCorreo(logica.getMensaje());
-    }
-    public void validarValores(){
-        logica.validarValores(mensajeValores);
-        setMensajeValores(logica.getMensaje());
-    }
-    public void validarFechas(){
-        logica.validarFecha(mensajeFechas);
-        setMensajeFechas(logica.getMensaje());
-    }
-    public void validarMoneda(){
-        logica.validarMoneda(mensajeMoneda);
-        setMensajeMoneda(logica.getMensaje());
-    }
-
-    public String getEscuchadorBoton() {
-        validarVacio();
-        validarTama();
-        validarValores();
-        validarCorreo();
-        validarFechas();
-        validarMoneda();
-        return "";
-    }
-
-    public void setEscuchadorBoton(String escuchadorBoton) {
-        this.escuchadorBoton = escuchadorBoton;
+    
+    public void escuchadorBoton() {
+        setMensajeError(logica.validarTodo(mensajeVacio, mensajeTamaño, mensajeCorreo, mensajeValores, mensajeFechas, mensajeMoneda));
     }
     
     public String getMensajeVacio() {
@@ -118,12 +83,12 @@ public class ValidacionControlador implements Serializable{
         this.mensajeMoneda = mensajeMoneda;
     }
 
-    public String getCampoVacio() {
-        return campoVacio;
+    public String getMensajeError() {
+        return mensajeError;
     }
 
-    public void setCampoVacio(String campoVacio) {
-        this.campoVacio = campoVacio;
+    public void setMensajeError(String mensajeError) {
+        this.mensajeError = mensajeError;
     }
     
 }

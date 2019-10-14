@@ -15,34 +15,65 @@ import java.util.regex.Pattern;
  * @author AndresChila
  */
 public class Logica {
-
-    private String mensaje;
-    public boolean validarVacio(String algo){
+    public String validarTodo(String va, String ta, String co, String val, String fe, String mo){
+        if(validarVacio(va, ta, co, val, fe, mo)){
+            if(validarTama(ta)){
+                if(validarCorreo(co)){
+                    if(validarValores(val)){
+                        if(validarFecha(fe)){
+                            if(validarMoneda(mo)){ 
+                            }
+                            else{
+                                return "Formato de moneda no valido, debe empezar por el signo pesos ($). Ejemplo: $500";
+                            }
+                        }
+                        else{
+                            return "Fecha no valida, el formato es dd/MM/AAAA";
+                        }
+                    }
+                    else{
+                        return "El valor ingresado debe ser mayor a -10 y menor a 10";
+                    }
+                }
+                else{
+                   return "Debe escribir un correo valido. Ejemplo: nombre@domunio.com"; 
+                }
+            }
+            else{
+                return "La longitud del valor debe ser mayor o igual a 5 y debe ser menor a 10";
+            }
+        }
+        else{
+            return "Debe completar el campo vacio";
+        }
+        return "validaciones completas";
+    }
+    public boolean validarVacio(String va, String ta, String co, String val,String fe, String mo ){
         try{
-        if(algo.length()==0){
-            this.setMensaje("Debe completar el campo vacio");
+        if(va.length()==0 || ta.length() ==0 || co.length() ==0 || val.length() ==0 ||fe.length() ==0 ||mo.length() ==0 ){
+            //this.setMensajeVacio("Debe completar el campo vacio");
             return false;
         }
         }catch(Exception e){
             if(e.getMessage().equals("NullPointerExeption")){
-                this.setMensaje("Debe completar el campo vacio");
+                //this.setMensajeVacio("Debe completar el campo vacio");
                 return false;
             }
         }
-        this.setMensaje("");
+        //this.setMensajeVacio("");
         return true;
     }
 
     public boolean validarTama(String palabra) {
         if (palabra.length() < 5) {
-            this.setMensaje("La longitud del valor debe ser mayor o igual a 5");
+            //this.setMensajeTama("La longitud del valor debe ser mayor o igual a 5");
             return false;
         }
         if (palabra.length() >= 10) {
-            this.setMensaje("La longitud del valor debe ser menor a 10");
+            //this.setMensajeTama("La longitud del valor debe ser menor a 10");
             return false;
         }
-        this.setMensaje("");
+        //this.setMensajeTama("");
         return true;
     }
 
@@ -50,20 +81,20 @@ public class Logica {
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher mather = pattern.matcher(correo);
         if (mather.find() == true) {
-            this.setMensaje("");
+            //this.setMensajeCorreo("");
             return true;
         } else {
-            this.setMensaje("Debe escribir un correo valido. Ejemplo: nombre@domunio.com");
+            //this.setMensajeCorreo("Debe escribir un correo valido. Ejemplo: nombre@domunio.com");
             return false;
         }
     }
 
     public boolean validarValores(String valor) {
-        if (Integer.parseInt(valor) < -10 || Integer.parseInt(valor) > -10) {
-            this.setMensaje("El valor ingresado debe ser mayor a -10 y menor a 10");
+        if (Integer.parseInt(valor) < -10 || Integer.parseInt(valor) > 10) {
+            //this.setMensajeValor("El valor ingresado debe ser mayor a -10 y menor a 10");
             return false;
         }
-        this.setMensaje("");
+        //this.setMensajeValor("");
         return true;
     }
 
@@ -73,27 +104,18 @@ public class Logica {
             formatoFecha.setLenient(false);
             formatoFecha.parse(fecha);
         } catch (ParseException e) {
-            this.setMensaje("Fecha no valida, el formato es dd/MM/AAAA");
+            //this.setMensajeFecha("Fecha no valida, el formato es dd/MM/AAAA");
             return false;
         }
-        this.setMensaje("");
+        //this.setMensajeFecha("");
         return true;
     }
     public boolean validarMoneda(String moneda){
         if(moneda.charAt(0)!= '$'){
-            this.setMensaje("Formato de moneda no valido, debe empezar por el signo pesos ($). Ejemplo: $500");
+            //this.setMensajeMoneda("Formato de moneda no valido, debe empezar por el signo pesos ($). Ejemplo: $500");
             return false;
         }
-        this.setMensaje("");
+        //this.setMensajeMoneda("");
         return true;
     }
-
-    public String getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
-
 }
