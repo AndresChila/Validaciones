@@ -63,7 +63,7 @@ public class ValidacionControlador implements Serializable {
         String texto = (String) value;
 
         if (!texto.equals("")) {
-            if (texto.length() < 5 && texto.length() > 10) {
+            if (texto.length() < 5 || texto.length() > 10) {
                 ((UIInput) toValidate).setValid(false);
                 context.addMessage(toValidate.getClientId(context), new FacesMessage("la longitud del texto debe ser mayor a 5 y menor a 10 caracteres"));
             } else {

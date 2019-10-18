@@ -26,7 +26,7 @@
             <br></br>
             <br></br>
             <h:outputText value="Campo de validacion valores: "/>
-            <h:inputText id="valores" label="Valores" value="#{validacionControlador.mensajeValores}" validator="#{validacionControlador.validarTama}" onkeypress="if((event.which &lt; 48 &amp;&amp; event.which != 44 &amp;&amp; event.which != 46) || event.which &gt; 57) return false;"/>
+            <h:inputText id="valores" label="Valores" value="#{validacionControlador.mensajeValores}" validator="#{validacionControlador.validarValores}" onkeypress="if((event.which &lt; 48 &amp;&amp; event.which != 44 &amp;&amp; event.which != 46) || event.which &gt; 57) return false;"/>
             <h:messages for="valores" style="color: red"/>
             <br></br>
             <br></br>
