@@ -29,7 +29,7 @@ import javax.faces.context.FacesContext;
 /**
  * Clase controlador de la vista "validacionControlador"
  */
-public class ValidacionControlador2 implements Serializable {
+public class OtrasValidaciones implements Serializable {
 
     private String mensajeVacio = "";
     private String mensajeTamaño = "";

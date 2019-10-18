@@ -26,6 +26,9 @@ import javax.validation.constraints.Size;
 @ManagedBean(name = "validacionControlador")
 @ViewScoped
 @Dependent
+/**
+ * Clase controlador que tiene validaciones por anotaciones
+ */
 public class ValidacionControlador {
     @NotNull(message = "Debe llenar el campo")
     private String mensajeVacio;
