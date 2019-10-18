@@ -11,35 +11,36 @@
             <h1>Validaciones por parte del controlador</h1>
         <br></br>
             <h:outputText value="Campo validacion no vacio:"/>
-            <h:inputText id="vacio" value="#{validacionControlador.mensajeVacio}"/>
+            <h:inputText id="vacio" value="#{validacionControlador.mensajeVacio}" validator="#{validacionControlador.validarVacio}"/>
+            <h:messages for="vacio" style="color: red"/>
             <br></br>
             <br></br>
             <h:outputText value="Campo validacion tamaño: "/>
-            <h:inputText id="tamaño" label="Tamaño" value="#{validacionControlador.mensajeTamaño}">
-            </h:inputText> 
+            <h:inputText id="tamaño" label="Tamaño" value="#{validacionControlador.mensajeTamaño}" validator="#{validacionControlador.validarTama}"/>
+            <h:messages for="tamaño" style="color: red"/>
             <br></br>
             <br></br>
             <h:outputText value="Campo validacion email: "/>
-            <h:inputText id="email" label="Email" value="#{validacionControlador.mensajeCorreo}" >
-            </h:inputText>   
+            <h:inputText id="email" label="Email" value="#{validacionControlador.mensajeCorreo}" validator="#{validacionControlador.validarEmail}"/>
+            <h:messages for="email" style="color: red"/>
             <br></br>
             <br></br>
             <h:outputText value="Campo de validacion valores: "/>
-            <h:inputText id="valores" label="Valores" value="#{validacionControlador.mensajeValores}" onkeypress="if((event.which &lt; 48 &amp;&amp; event.which != 44 &amp;&amp; event.which != 46) || event.which &gt; 57) return false;">
-            </h:inputText> 
+            <h:inputText id="valores" label="Valores" value="#{validacionControlador.mensajeValores}" validator="#{validacionControlador.validarTama}" onkeypress="if((event.which &lt; 48 &amp;&amp; event.which != 44 &amp;&amp; event.which != 46) || event.which &gt; 57) return false;"/>
+            <h:messages for="valores" style="color: red"/>
             <br></br>
             <br></br>
             <h:outputText value="Campo de validacion fecha (dia/mes/año): "/>
-            <h:inputText  id="fecha" label="Fecha" value="#{validacionControlador.mensajeFechas}">
-            </h:inputText>
+            <h:inputText id="fecha" label="Fecha" value="#{validacionControlador.mensajeFechas}" validator="#{validacionControlador.validarFecha}"/>
+            <h:messages for="fecha" style="color: red"/>
             <br></br>
             <br></br>
             <h:outputText  value="Campo de validacion moneda: "/>
-            <h:inputText  id="moneda" label="Moneda" value="#{validacionControlador.mensajeMoneda}">
-            </h:inputText>
+            <h:inputText id="moneda" label="Moneda" value="#{validacionControlador.mensajeMoneda}" validator="#{validacionControlador.validarMoneda}"/>
+            <h:messages for="moneda" style="color: red"/>
             <br></br>
             <br></br>
-            <h:commandButton value ="Probar" actionListener="${validacionControlador.escuchadorBoton()}" >
+            <h:commandButton value ="Probar" >
             </h:commandButton>
             <br></br>
             <h:outputText value="#{validacionControlador.mensajeError}" style=" color: red; font-size:large; "/>
